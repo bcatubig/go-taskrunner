@@ -9,7 +9,6 @@ type TaskFunc func(context.Context) error
 
 type Task struct {
 	taskFn TaskFunc
-	errors <-chan error
 }
 
 // NewTask creates a new task object
