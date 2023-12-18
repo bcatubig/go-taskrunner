@@ -27,7 +27,7 @@ import (
 func main() {
     ctx := context.Background()
 
-    t1 := task.NewTask(func(ctx context.Context) error {
+    t1 := func(ctx context.Context) error {
         for {
             fmt.Println("doing work")
             time.Sleep(1 * time.Second)
@@ -39,13 +39,13 @@ func main() {
             default:
             }
         }
-    })
+    }
 
-    t2 := task.NewTask(func(ctx context.Context) error {
+    t2 := func(ctx context.Context) error {
         // do some work
         time.Sleep(30 * time.Second)
         return nil
-    })
+    )
 
     errs := task.RunTasks(ctx, t1, t2)
 
